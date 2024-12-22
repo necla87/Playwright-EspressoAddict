@@ -134,7 +134,23 @@ export async function cheatIfNeeded(world) {
   // }
 }
 
+export async function waitForEvent(world, event) {
+  const maxRetries = 20; // Number of retries (adjust as needed)
+  const interval = 500; // Interval in milliseconds between retries
 
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    const eventElements = await world.getMany('.event'); // Adjust selector based on your HTML structure
+    for (const element of eventElements) {
+      const text = await world.getText(element);
+      if (text.includes(event)) {
+        return; // Event found, exit the function
+      }
+    }
+    await world.sleep(interval); // Wait before the next retry
+  }
+
+  throw new Error(`Event "${event}" not found after ${maxRetries * interval / 1000} seconds`);
+}
 export const sectionClassMap = {
   'health': 'health',
   'money': 'money',
