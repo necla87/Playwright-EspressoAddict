@@ -1,0 +1,32 @@
+Feature: Win the game
+  As a user I want to win the game
+
+  Scenario: At the right place with the right starting values
+    Given that I have started the game by navigating to "http://localhost:3000"
+    Given that I make the choice to "Go north"
+    And my position should be "in a crowded bar"
+    When I wait for the event "The bartender offers you a can of beer for free" to take place
+    And my hipster bag should contain "a can of beer"
+    And that I make the choice to "Go west"
+    And that I make the choice to "Go south"
+    And that I make the choice to "Go south"
+    And that I make the choice to "Go west"
+    And my position should be "at the concert"
+    When I wait for the event "why don't come on up and jam with us?" to take place
+    And my hipster bag should contain "a can of beer"
+    And that I make the choice to "Jam with the band"
+    And that I make the choice to "Go east"
+    And that I make the choice to "Go north"
+    And that I make the choice to "Enter the cafe"
+    When I wait for the event "The barista is in a dark corner phoning a friend" to take place
+    And that I make the choice to "Give beer to barista"
+    And my hipster bag should contain "nothing cool"
+    And that I make the choice to "Buy an espresso"
+    Then my health should be "10 more than before"
+    And the value of my "Money" should be 10
+    And the value of my "Espressos" should be 3
+    And my hipster bag should contain "nothing cool"
+    And that I make the choice to "Buy an espresso"
+    Then my position is "inside the cafe"
+    And that I make the choice to "Buy an espresso"
+    And I should be given the new choice "Play again"
